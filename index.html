@@ -1,28 +1,118 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sound Project Playlist</title>
-        <link rel="stylesheet" href="styles.css">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="manifest" href="manifest.json" />
+        <title>Sound Project Playlist</title>
+        <link rel="stylesheet" href="styles.css" />
         <style>
-            body { font-family: Arial, sans-serif; margin: 20px auto; max-width: 600px; text-align: left; }
-            .segment { margin: 10px 0; border: #00000026 1px dashed; padding: 10px; overflow: hidden; }
-            #timer { filter: opacity(30%); }
-            button { margin-bottom: 30px; }
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px auto;
+                max-width: 600px;
+                text-align: left;
+            }
+            .segment {
+                margin: 10px 0;
+                border: #00000026 1px dashed;
+                padding: 10px;
+                overflow: hidden;
+            }
+            #timer {
+                filter: opacity(30%);
+            }
+            button {
+                margin-bottom: 30px;
+            }
 
-    .button-56{align-items:center;background-color:#fee6e3;border:2px solid #111;border-radius:0px;box-sizing:border-box;color:#111;cursor:pointer;display:flex;font-family:Inter,sans-serif;font-size:16px;height:48px;justify-content:center;line-height:24px;max-width:100%;padding:0 25px;position:relative;text-align:center;text-decoration:none;user-select:none;-webkit-user-select:none;touch-action:manipulation}.button-56:after{background-color:#111;border-radius:0px;content:"";display:block;height:48px;left:0;width:100%;position:absolute;top:-2px;transform:translate(8px, 8px);transition:transform 0.2s ease-out;z-index:-1}.button-56:hover:after{transform:translate(0, 0)}.button-56:active{background-color:#ffdeda;outline:0}.button-56:hover{outline:0}@media (min-width: 768px){.button-56{padding:0 40px}}
+            .button-56 {
+                align-items: center;
+                background-color: #fee6e3;
+                border: 2px solid #111;
+                border-radius: 0px;
+                box-sizing: border-box;
+                color: #111;
+                cursor: pointer;
+                display: flex;
+                font-family: Inter, sans-serif;
+                font-size: 16px;
+                height: 48px;
+                justify-content: center;
+                line-height: 24px;
+                max-width: 100%;
+                padding: 0 25px;
+                position: relative;
+                text-align: center;
+                text-decoration: none;
+                user-select: none;
+                -webkit-user-select: none;
+                touch-action: manipulation;
+            }
+            .button-56:after {
+                background-color: #111;
+                border-radius: 0px;
+                content: "";
+                display: block;
+                height: 48px;
+                left: 0;
+                width: 100%;
+                position: absolute;
+                top: -2px;
+                transform: translate(8px, 8px);
+                transition: transform 0.2s ease-out;
+                z-index: -1;
+            }
+            .button-56:hover:after {
+                transform: translate(0, 0);
+            }
+            .button-56:active {
+                background-color: #ffdeda;
+                outline: 0;
+            }
+            .button-56:hover {
+                outline: 0;
+            }
+            @media (min-width: 768px) {
+                .button-56 {
+                    padding: 0 40px;
+                }
+            }
         </style>
-</head>
-<body>
-    <h1>024S.Player</h1>
-    <button onclick="startSoundProject()" class="button-56" role="button">Press once</button>
-    <div id="timer"><div id="oldtimer">Current Segment Timer: <span id="current-time">0:00</span> seconds</div></div>
-    <div id="playlist"></div>
+    </head>
+    <body>
+        <h1>024S.Player</h1>
+        <button onclick="startSoundProject()" class="button-56" role="button">
+            Press once
+        </button>
+        <div id="timer">
+            <div id="oldtimer">
+                Current Segment Timer:
+                <span id="current-time">0:00</span> seconds
+            </div>
+        </div>
+        <div id="playlist"></div>
 
-
-    <script src="filelist.js"></script>
-    <script src="playback.js"></script>
-    <script src="display.js"></script>
-</body>
+        <script src="filelist.js"></script>
+        <script src="playback.js"></script>
+        <script src="display.js"></script>
+        <script>
+            if ("serviceWorker" in navigator) {
+                navigator.serviceWorker
+                    .register("/service-worker.js")
+                    .then((registration) => {
+                        console.log(
+                            "Service Worker registered with scope:",
+                            registration.scope,
+                        );
+                    })
+                    .catch((error) => {
+                        console.log(
+                            "Service Worker registration failed:",
+                            error,
+                        );
+                    });
+            }
+        </script>
+    </body>
 </html>
